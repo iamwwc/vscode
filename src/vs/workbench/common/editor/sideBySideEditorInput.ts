@@ -198,12 +198,6 @@ interface ISerializedSideBySideEditorInput {
 
 export abstract class AbstractSideBySideEditorInputSerializer implements IEditorSerializer {
 
-	private getSerializers(secondaryEditorInputTypeId: string, primaryEditorInputTypeId: string): [IEditorSerializer | undefined, IEditorSerializer | undefined] {
-		const registry = Registry.as<IEditorFactoryRegistry>(EditorExtensions.EditorFactory);
-
-		return [registry.getEditorSerializer(secondaryEditorInputTypeId), registry.getEditorSerializer(primaryEditorInputTypeId)];
-	}
-
 	canSerialize(editorInput: EditorInput): boolean {
 		const input = editorInput as SideBySideEditorInput | DiffEditorInput;
 
@@ -257,6 +251,12 @@ export abstract class AbstractSideBySideEditorInputSerializer implements IEditor
 		}
 
 		return undefined;
+	}
+
+	private getSerializers(secondaryEditorInputTypeId: string, primaryEditorInputTypeId: string): [IEditorSerializer | undefined, IEditorSerializer | undefined] {
+		const registry = Registry.as<IEditorFactoryRegistry>(EditorExtensions.EditorFactory);
+
+		return [registry.getEditorSerializer(secondaryEditorInputTypeId), registry.getEditorSerializer(primaryEditorInputTypeId)];
 	}
 
 	protected abstract createEditorInput(instantiationService: IInstantiationService, name: string, description: string | undefined, secondaryInput: EditorInput, primaryInput: EditorInput): EditorInput;
