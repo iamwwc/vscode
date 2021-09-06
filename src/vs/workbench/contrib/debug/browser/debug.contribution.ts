@@ -454,6 +454,11 @@ configurationRegistry.registerConfiguration({
 			description: nls.localize({ comment: ['This is the description for a setting'], key: 'showSubSessionsInToolBar' }, "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session."),
 			default: false
 		},
+		'debug.confirmOnRestart': {
+			type: 'boolean',
+			description: nls.localize('debug.confirmOnRestart', "Controls whether show confirm dialog when there are another debugging session running"),
+			default: true
+		},
 		'debug.console.fontSize': {
 			type: 'number',
 			description: nls.localize('debug.console.fontSize', "Controls the font size in pixels in the debug console."),
